@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Circe-Regular.ttf">
+            <string>Circe-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="cameraCell" selectionStyle="default" indentationWidth="10" rowHeight="247" id="KGk-i7-Jjw" customClass="CameraCell" customModule="RM_CamApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="411" height="247"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="411" height="247"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vqy-59-yU4">
+                        <rect key="frame" x="15" y="8" width="381" height="231"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ALp-7K-Lw0">
+                                <rect key="frame" x="0.0" y="0.0" width="381" height="173.33333333333334"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Камера" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5a-aH-bQ6">
+                                <rect key="frame" x="20" y="188.33333333333334" width="341" height="27.666666666666657"/>
+                                <fontDescription key="fontDescription" name="Circe-Regular" family="Circe" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="Xls-Wo-w1R">
+                                <rect key="frame" x="347" y="10" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="jD0-sW-ry2"/>
+                                    <constraint firstAttribute="width" constant="24" id="o3u-Ct-LLD"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rec" translatesAutoresizingMaskIntoConstraints="NO" id="2mi-cA-4lW">
+                                <rect key="frame" x="10" y="10" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="63U-5v-uYo"/>
+                                    <constraint firstAttribute="width" constant="24" id="XkQ-fR-eky"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playButton" translatesAutoresizingMaskIntoConstraints="NO" id="mNw-Dd-ZtE">
+                                <rect key="frame" x="160.66666666666666" y="56.666666666666671" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="7jH-Lb-8Ap"/>
+                                    <constraint firstAttribute="width" constant="60" id="ErS-eI-jVC"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2mi-cA-4lW" firstAttribute="leading" secondItem="Vqy-59-yU4" secondAttribute="leading" constant="10" id="3pH-li-KL1"/>
+                            <constraint firstAttribute="trailing" secondItem="Xls-Wo-w1R" secondAttribute="trailing" constant="10" id="9PM-N3-qY6"/>
+                            <constraint firstItem="V5a-aH-bQ6" firstAttribute="top" secondItem="ALp-7K-Lw0" secondAttribute="bottom" constant="15" id="A5P-8n-4jq"/>
+                            <constraint firstItem="ALp-7K-Lw0" firstAttribute="top" secondItem="Vqy-59-yU4" secondAttribute="top" id="Ay7-Zr-j47"/>
+                            <constraint firstItem="V5a-aH-bQ6" firstAttribute="leading" secondItem="Vqy-59-yU4" secondAttribute="leading" constant="20" id="CJX-Lm-N6E"/>
+                            <constraint firstItem="Xls-Wo-w1R" firstAttribute="top" secondItem="Vqy-59-yU4" secondAttribute="top" constant="10" id="GlU-69-Emp"/>
+                            <constraint firstItem="mNw-Dd-ZtE" firstAttribute="centerY" secondItem="ALp-7K-Lw0" secondAttribute="centerY" id="Ivq-zR-QIL"/>
+                            <constraint firstAttribute="trailing" secondItem="ALp-7K-Lw0" secondAttribute="trailing" id="PME-P8-vae"/>
+                            <constraint firstItem="ALp-7K-Lw0" firstAttribute="height" secondItem="Vqy-59-yU4" secondAttribute="height" multiplier="0.75" id="R8N-Gd-nTK"/>
+                            <constraint firstItem="mNw-Dd-ZtE" firstAttribute="centerX" secondItem="ALp-7K-Lw0" secondAttribute="centerX" id="Si0-Lz-rlY"/>
+                            <constraint firstItem="2mi-cA-4lW" firstAttribute="top" secondItem="Vqy-59-yU4" secondAttribute="top" constant="10" id="TAM-ke-WUc"/>
+                            <constraint firstItem="ALp-7K-Lw0" firstAttribute="leading" secondItem="Vqy-59-yU4" secondAttribute="leading" id="dMA-8X-hJi"/>
+                            <constraint firstAttribute="trailing" secondItem="V5a-aH-bQ6" secondAttribute="trailing" constant="20" id="tKZ-9T-Zo3"/>
+                            <constraint firstAttribute="bottom" secondItem="V5a-aH-bQ6" secondAttribute="bottom" constant="15" id="wt0-KA-5iP"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Vqy-59-yU4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="lT4-wm-GGO"/>
+                    <constraint firstItem="Vqy-59-yU4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="onv-KV-w4a"/>
+                    <constraint firstAttribute="trailing" secondItem="Vqy-59-yU4" secondAttribute="trailing" constant="15" id="sWE-EP-OQX"/>
+                    <constraint firstAttribute="bottom" secondItem="Vqy-59-yU4" secondAttribute="bottom" constant="8" id="w9K-g8-x2L"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <integer key="value" value="12"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="backView" destination="Vqy-59-yU4" id="Srh-gi-ZgG"/>
+                <outlet property="cameraName" destination="V5a-aH-bQ6" id="hgj-24-fpI"/>
+                <outlet property="favoriteStatusLogo" destination="Xls-Wo-w1R" id="8MV-E6-Fuh"/>
+                <outlet property="playerBlock" destination="ALp-7K-Lw0" id="WK0-VU-ucL"/>
+                <outlet property="recStatusLogo" destination="2mi-cA-4lW" id="IzS-0U-5oC"/>
+            </connections>
+            <point key="canvasLocation" x="149" y="46"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="playButton" width="60" height="60"/>
+        <image name="rec" width="24" height="24"/>
+        <image name="star" width="24" height="24"/>
+    </resources>
+</document>

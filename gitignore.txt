@@ -1,0 +1,9 @@
+ 8 lines (6 sloc) 101 Bytes
+## Apple Finder files
+.DS_Store
+
+## User settings
+xcuserdata/
+
+## Playgrounds
+playground.xcworkspace

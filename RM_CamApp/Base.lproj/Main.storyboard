@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KLB-oa-0YI">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Circe-Regular.ttf">
+            <string>Circe-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="dom-m7-6OX">
+            <objects>
+                <viewController id="KLB-oa-0YI" customClass="ViewController" customModule="RM_CamApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aAl-hh-Ja2">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мой дом" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZW-RW-F8d">
+                                <rect key="frame" x="0.0" y="69" width="393" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="klN-gd-L76"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Circe-Regular" family="Circe" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="334-PT-2jv">
+                                <rect key="frame" x="0.0" y="119" width="393" height="55"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i64-qS-XFi">
+                                        <rect key="frame" x="0.0" y="0.0" width="196.66666666666666" height="55"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BpR-l8-Vty">
+                                                <rect key="frame" x="0.0" y="0.0" width="196.66666666666666" height="53"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Камеры">
+                                                    <fontDescription key="titleFontDescription" name="Circe-Regular" family="Circe" pointSize="17"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="switchToCameras:" destination="KLB-oa-0YI" eventType="touchUpInside" id="ITg-JD-ail"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.23031213880000001" green="0.66132050750000004" blue="0.95604842899999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="BpR-l8-Vty" secondAttribute="trailing" id="81d-Ed-O0G"/>
+                                            <constraint firstItem="BpR-l8-Vty" firstAttribute="top" secondItem="i64-qS-XFi" secondAttribute="top" id="jLN-hD-wP5"/>
+                                            <constraint firstItem="BpR-l8-Vty" firstAttribute="leading" secondItem="i64-qS-XFi" secondAttribute="leading" id="u8e-FF-nnE"/>
+                                            <constraint firstAttribute="bottom" secondItem="BpR-l8-Vty" secondAttribute="bottom" constant="2" id="x2y-d8-Dc5"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ebR-3L-WrE">
+                                        <rect key="frame" x="196.66666666666663" y="0.0" width="196.33333333333337" height="55"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7V-Kh-jij">
+                                                <rect key="frame" x="0.0" y="0.0" width="196.33333333333334" height="55"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Двери">
+                                                    <fontDescription key="titleFontDescription" name="Circe-Regular" family="Circe" pointSize="17"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="switchToDoors:" destination="KLB-oa-0YI" eventType="touchUpInside" id="Way-ud-McJ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.23031213880000001" green="0.66132050750000004" blue="0.95604842899999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="d7V-Kh-jij" firstAttribute="top" secondItem="ebR-3L-WrE" secondAttribute="top" id="a1U-hM-eJR"/>
+                                            <constraint firstAttribute="bottom" secondItem="d7V-Kh-jij" secondAttribute="bottom" id="ddO-eB-FMM"/>
+                                            <constraint firstAttribute="trailing" secondItem="d7V-Kh-jij" secondAttribute="trailing" id="j6z-9h-ZS3"/>
+                                            <constraint firstItem="d7V-Kh-jij" firstAttribute="leading" secondItem="ebR-3L-WrE" secondAttribute="leading" id="y9x-vK-3oh"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="Yg0-FP-kCS"/>
+                                </constraints>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gVe-T8-jL9">
+                                <rect key="frame" x="0.0" y="174" width="393" height="644"/>
+                                <color key="backgroundColor" red="0.96607202290000005" green="0.96607202290000005" blue="0.96607214210000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ygc-wx-kDZ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ygc-wx-kDZ" firstAttribute="trailing" secondItem="334-PT-2jv" secondAttribute="trailing" id="Fzr-X5-WuL"/>
+                            <constraint firstItem="Ygc-wx-kDZ" firstAttribute="trailing" secondItem="EZW-RW-F8d" secondAttribute="trailing" id="Ixi-wT-aF9"/>
+                            <constraint firstItem="334-PT-2jv" firstAttribute="leading" secondItem="Ygc-wx-kDZ" secondAttribute="leading" id="JaZ-wI-BRp"/>
+                            <constraint firstItem="Ygc-wx-kDZ" firstAttribute="trailing" secondItem="gVe-T8-jL9" secondAttribute="trailing" id="MQz-TN-FU7"/>
+                            <constraint firstItem="gVe-T8-jL9" firstAttribute="top" secondItem="334-PT-2jv" secondAttribute="bottom" id="NG4-hd-EqX"/>
+                            <constraint firstItem="Ygc-wx-kDZ" firstAttribute="bottom" secondItem="gVe-T8-jL9" secondAttribute="bottom" id="QDK-ec-EFE"/>
+                            <constraint firstItem="gVe-T8-jL9" firstAttribute="leading" secondItem="Ygc-wx-kDZ" secondAttribute="leading" id="S1d-cy-S9A"/>
+                            <constraint firstItem="334-PT-2jv" firstAttribute="top" secondItem="EZW-RW-F8d" secondAttribute="bottom" id="Ul5-lq-tov"/>
+                            <constraint firstItem="EZW-RW-F8d" firstAttribute="leading" secondItem="Ygc-wx-kDZ" secondAttribute="leading" id="hLx-dw-DRE"/>
+                            <constraint firstItem="EZW-RW-F8d" firstAttribute="top" secondItem="Ygc-wx-kDZ" secondAttribute="top" constant="10" id="jQg-WQ-KhV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="camerasBottomConstraint" destination="x2y-d8-Dc5" id="zlb-bv-OQ6"/>
+                        <outlet property="camerasButton" destination="BpR-l8-Vty" id="4AP-2d-tnK"/>
+                        <outlet property="contentTableView" destination="gVe-T8-jL9" id="f7B-eK-fif"/>
+                        <outlet property="doorsBottomConstraint" destination="ddO-eB-FMM" id="Kfu-gc-sSC"/>
+                        <outlet property="doorsButton" destination="d7V-Kh-jij" id="sUv-gp-VBd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rdQ-Wt-sjZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="819" y="-94"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
