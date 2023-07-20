@@ -37,7 +37,7 @@ class CameraCell: UITableViewCell {
 	}
 	
 	func configuration(by camera: CameraData) {
-		NetworkManager().uploadImage(by: camera.snapshot, { image in
+		NetworkManager.shared.uploadImage(by: camera.snapshot, { image in
 			DispatchQueue.main.async { [weak self] in
 				if let image {
 					self?.playerBlock.image = image

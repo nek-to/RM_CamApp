@@ -5,26 +5,26 @@
 //  Created by admin on 19.07.2023.
 //
 
-import Foundation
+import RealmSwift
 
-struct CameraData: Codable, Sequence, IteratorProtocol {
-	var name: String
-	var snapshot: String
-	var room: String?
-	var id: Int
-	var favorites: Bool
-	var rec: Bool
+class CameraData: Object, Codable {
+	@objc dynamic var name: String = ""
+	@objc dynamic var snapshot: String = ""
+	@objc dynamic var room: String? = nil
+	@objc dynamic var id: Int = 0
+	@objc dynamic var favorites: Bool = false
+	@objc dynamic var rec: Bool = false
 	
-	mutating func next() -> CameraData? {
-		// implementation of next() method for IteratorProtocol
-		// return the next CameraData object in the iteration
-		// or nil if there are no more elements
-		return self // return self as an example
-	}
-	
-	func makeIterator() -> CameraData {
-		// implementation of makeIterator() method for Sequence
-		return self
+	func makeIterator() -> AnyIterator<CameraData> {
+		let iterator = AnyIterator {
+			self.id += 1
+			if self.id <= 1 {
+				return self
+			} else {
+				return nil
+			}
+		}
+		return iterator
 	}
 }
 

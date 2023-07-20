@@ -6,8 +6,13 @@
 //
 import UIKit
 import Foundation
+import RealmSwift
 
 class NetworkManager {
+	static let shared = NetworkManager()
+	
+	private init() {}
+	
 	func getCamerasData(_ completion: @escaping(CamerasModel?, Error?) -> Void) {
 		guard let url = URL(string: "https://cars.cprogroup.ru/api/rubetek/cameras/") else {
 			print("URL ISSUE")
@@ -16,7 +21,7 @@ class NetworkManager {
 		
 		let queue = DispatchQueue(label: "com.yourdomain.HttpQueue.Cameras", attributes: .concurrent)
 		
-		queue.async {
+//		queue.async {
 			URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
 				guard let data = data else {
 					print("Data issue")
@@ -29,9 +34,9 @@ class NetworkManager {
 					completion(nil, error)
 				}
 			}.resume()
-		}
+//		}
 	}
-
+	
 	
 	func getDoorsData(_ completion: @escaping(DoorsModel?, Error?) -> Void) {
 		guard let url = URL(string: "https://cars.cprogroup.ru/api/rubetek/doors/") else {
@@ -64,7 +69,7 @@ class NetworkManager {
 		}
 		var resultImage = UIImage()
 		let queue = DispatchQueue(label: "com.yourdomain.HttpQueue.Image", attributes: .concurrent)
-
+		
 		queue.async {
 			URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
 				guard let data else {
@@ -79,6 +84,6 @@ class NetworkManager {
 			}
 			.resume()
 		}
-	
+		
 	}
 }

@@ -5,9 +5,9 @@
 //  Created by admin on 19.07.2023.
 //
 
-import Foundation
+import RealmSwift
 
-struct DoorsModel: Codable {
-	var success: Bool
-	var data: [DoorData]
+class DoorsModel: Object, Codable {
+	@objc dynamic var success: Bool = false
+	dynamic var data = List<DoorData>()
 }

@@ -5,9 +5,14 @@
 //  Created by admin on 19.07.2023.
 //
 
-import Foundation
+import RealmSwift
 
-struct CamerasModelData: Codable {
-	var room: [String]
-	var cameras: [CameraData]
+class CamerasModelData: Object, Codable {
+	dynamic var room = List<String>()
+	dynamic var cameras = List<CameraData>()
+	
+	func makeIterator() -> AnyIterator<CameraData> {
+		let iterator = cameras.makeIterator()
+		return AnyIterator(iterator)
+	}
 }

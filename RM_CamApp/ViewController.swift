@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ViewController: UIViewController {
 	@IBOutlet weak var camerasButton: UIButton!
@@ -17,8 +18,9 @@ class ViewController: UIViewController {
 	private var camerasData: CamerasModel?
 	private var doorsData: DoorsModel?
 	private var camerasSelected = true
+	private let realm = try? Realm()
 	
-	
+	var sendDataClosure: ((DoorData) -> Void)?
 	var sections: [String?: [CameraData]] = [:]
 	var sectionsIn =  [Dictionary<String?, [CameraData]>.Keys.Element]()
 	
@@ -31,45 +33,84 @@ class ViewController: UIViewController {
 		contentTableView.register(CameraCell.nib(), forCellReuseIdentifier: CameraCell.identifier)
 		contentTableView.register(DoorCell.nib(), forCellReuseIdentifier: DoorCell.identifier)
 		contentTableView.separatorStyle = .none
-		NetworkManager().getCamerasData { cameras, error in
-			self.camerasData = cameras
-			
-			let sortedData = self.camerasData?.data.cameras.sorted { $0.room ?? "" < $1.room ?? "" }
-			
-			for data in sortedData! {
-				let room = data.room ?? "No Room" // Если поле room может быть неопределено (nil), можно использовать пустую строку в качестве значения по умолчанию
-				if self.sections[room] == nil {
-					self.sections[room] = [data]
+		DataManager.shared.clearAllDB()
+		
+		NetworkManager.shared.getCamerasData { [weak self] newData, error in
+			// Ensure there are no errors and the data is not nil
+			guard let newData = newData, error == nil else {
+				return
+			}
+
+			// Sort the data by room
+			let sortedData = newData.data?.cameras.sorted { $0.room ?? "" < $1.room ?? "" }
+			for data in sortedData ?? [CameraData]() {
+				let room = data.room ?? "No Room"
+				if self?.sections[room] == nil {
+					self?.sections[room] = [data]
 				} else {
-					self.sections[room]?.append(data)
+					self?.sections[room]?.append(data)
 				}
 			}
-			self.sectionsIn = Array(self.sections.keys)
-			
-			DispatchQueue.main.sync {
-				self.contentTableView.reloadData()
+
+			// Update the table view on the main thread
+			DispatchQueue.main.async {
+				self?.sectionsIn = Array(self!.sections.keys)
+				self?.contentTableView.reloadData()
+			}
+
+			// Write the new data into the database on a background thread
+			DispatchQueue.global(qos: .background).async {
+				DataManager.shared.writeDataIntoDB(.network, .camera)
+				DataManager.shared.writeDataIntoDB(.network, .door)
 			}
 		}
-		NetworkManager().getDoorsData { door, error in
-			self.doorsData = door
-		}
 	}
+//		let dispatchGroup = DispatchGroup()
+//
+//		dispatchGroup.enter()
+//		dispatchGroup.leave()
+//
+//
+//		camerasData = DataManager.shared.readDataFromDB(.network, CamerasModel.self)?.first
+//		doorsData = DataManager.shared.readDataFromDB(.network, DoorsModel.self)?.first
+//		NetworkManager.shared.getCamerasData { cameras, error in
+//			self.camerasData = cameras
+//
+//			let sortedData = self.camerasData?.data?.cameras.sorted { $0.room ?? "" < $1.room ?? "" }
+//
+//			for data in sortedData! {
+//				let room = data.room ?? "No Room" // Если поле room может быть неопределено (nil), можно использовать пустую строку в качестве значения по умолчанию
+//				if self.sections[room] == nil {
+//					self.sections[room] = [data]
+//				} else {
+//					self.sections[room]?.append(data)
+//				}
+//			}
+//			self.sectionsIn = Array(self.sections.keys)
+//
+//			DispatchQueue.main.sync {
+//				self.contentTableView.reloadData()
+//			}
+//		}
+//		NetworkManager.shared.getDoorsData { door, error in
+//			self.doorsData = door
+//		}
+
+@IBAction func switchToCameras(_ sender: Any) {
+	camerasBottomConstraint.constant = 2.0
+	doorsBottomConstraint.constant = 0.0
 	
-	@IBAction func switchToCameras(_ sender: Any) {
-		camerasBottomConstraint.constant = 2.0
-		doorsBottomConstraint.constant = 0.0
-		
-		camerasSelected = true
-		contentTableView.reloadData()
-	}
+	camerasSelected = true
+	contentTableView.reloadData()
+}
+
+@IBAction func switchToDoors(_ sender: Any) {
+	camerasBottomConstraint.constant = 0.0
+	doorsBottomConstraint.constant = 2.0
 	
-	@IBAction func switchToDoors(_ sender: Any) {
-		camerasBottomConstraint.constant = 0.0
-		doorsBottomConstraint.constant = 2.0
-		
-		camerasSelected = false
-		contentTableView.reloadData()
-	}
+	camerasSelected = false
+	contentTableView.reloadData()
+}
 }
 
 extension ViewController: UITableViewDelegate {
@@ -132,6 +173,33 @@ extension ViewController: UITableViewDataSource {
 			return doorCell
 		}
 	}
+	
+	func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+		let customAction = UIContextualAction(style: .normal, title: nil) { _, _, completionHandler in
+			// Handle the action when it's tapped
+			print("action")
+			completionHandler(true)
+		}
+		customAction.backgroundColor = .white
+		customAction.image = UIImage(named: "favorite")
+		
+		let configuration = UISwipeActionsConfiguration(actions: [customAction])
+		configuration.performsFirstActionWithFullSwipe = false
+		return configuration
+	}
+	
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		if !camerasSelected && doorsData?.data[indexPath.row].snapshot != nil {
+			if let doorData = doorsData?.data[indexPath.row] {
+				let vc = DoorViewController(doorData)
+				vc.modalPresentationStyle = .fullScreen
+				vc.modalTransitionStyle = .flipHorizontal
+				present(vc, animated: true)
+			}
+		}
+	}
+	
 	
 	//		func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 	//			guard let title = camerasData?.data.room[section] else { return nil }

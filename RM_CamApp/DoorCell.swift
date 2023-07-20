@@ -15,6 +15,7 @@ class DoorCell: UITableViewCell {
 	@IBOutlet weak var a: UIView!
 	@IBOutlet weak var playLogo: UIImageView!
 	@IBOutlet weak var aTopConstraint: NSLayoutConstraint?
+	@IBOutlet weak var isOnline: UILabel!
 	
 	static let identifier = "DoorCell"
 	
@@ -53,13 +54,14 @@ class DoorCell: UITableViewCell {
 	}
 	
 	private func showPlayerBlock(with snapshot: String) {
-		NetworkManager().uploadImage(by: snapshot) { [weak self] image in
+		NetworkManager.shared.uploadImage(by: snapshot) { [weak self] image in
 			DispatchQueue.main.async {
 				guard let self = self, let image = image else { return }
 				self.playerBlock.image = image
 				self.playLogo.isHidden = false
 				self.playerBlock.isHidden = false
 				self.aTopConstraint?.constant = 0
+				self.isOnline.isHidden = false
 			}
 		}
 	}
@@ -70,6 +72,7 @@ class DoorCell: UITableViewCell {
 		playerBlock.isHidden = true
 		aTopConstraint?.constant = -40
 		favoriteStatusLogo.isHidden = true
+		isOnline.isHidden = true
 	}
 	
 }

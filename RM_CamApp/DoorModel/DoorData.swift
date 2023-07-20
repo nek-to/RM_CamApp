@@ -5,12 +5,12 @@
 //  Created by admin on 19.07.2023.
 //
 
-import Foundation
+import RealmSwift
 
-struct DoorData: Codable {
-	var name: String
-	var room: String?
-	var id: Int
-	var favorites: Bool
-	var snapshot: String?
+class DoorData: Object, Codable {
+	@objc dynamic var name: String = ""
+	@objc dynamic var room: String? = nil
+	@objc dynamic var id: Int = 0
+	@objc dynamic var favorites: Bool = false
+	@objc dynamic var snapshot: String? = nil
 }
