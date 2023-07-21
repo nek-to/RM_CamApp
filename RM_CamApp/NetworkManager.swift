@@ -46,7 +46,7 @@ class NetworkManager {
 		
 		let queue = DispatchQueue(label: "com.yourdomain.HttpQueue.Doors", attributes: .concurrent)
 		
-		queue.async {
+//		queue.async {
 			URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
 				guard let data = data else {
 					print("Data issue")
@@ -59,7 +59,7 @@ class NetworkManager {
 					completion(nil, error)
 				}
 			}.resume()
-		}
+//		}
 	}
 	
 	func uploadImage(by url: String, _ completion: @escaping(UIImage?) -> Void) {

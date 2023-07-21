@@ -1,10 +1,3 @@
-//
-//  DoorData.swift
-//  RM_CamApp
-//
-//  Created by admin on 19.07.2023.
-//
-
 import RealmSwift
 
 class DoorData: Object, Codable {

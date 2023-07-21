@@ -32,19 +32,19 @@
                                 <rect key="frame" x="20" y="152.33333333333334" width="250" height="50.666666666666657"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дверь" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0iS-0m-H7p">
-                                        <rect key="frame" x="0.0" y="10" width="250" height="20"/>
+                                        <rect key="frame" x="0.0" y="9.9999999999999982" width="250" height="25.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Circe-Regular" family="Circe" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В сети" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ipl-5b-FAQ">
-                                        <rect key="frame" x="0.0" y="30" width="34" height="13"/>
+                                        <rect key="frame" x="0.0" y="35.333333333333314" width="31.333333333333332" height="16.333333333333329"/>
                                         <fontDescription key="fontDescription" name="Circe-Regular" family="Circe" pointSize="11"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lockon" translatesAutoresizingMaskIntoConstraints="NO" id="N78-3c-sgJ">
-                                        <rect key="frame" x="226" y="8" width="24" height="24"/>
+                                        <rect key="frame" x="226" y="10.666666666666657" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="GUe-iO-ffZ"/>
                                             <constraint firstAttribute="height" constant="24" id="Tsd-ez-K8u"/>
@@ -79,7 +79,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="LH7-2k-Shn" firstAttribute="centerX" secondItem="Pfs-Jp-7zL" secondAttribute="centerX" id="5Sx-VA-b0o"/>
                             <constraint firstItem="Pfs-Jp-7zL" firstAttribute="height" secondItem="acc-kH-UNk" secondAttribute="height" multiplier="0.75" id="7T1-Ao-jim"/>
@@ -101,6 +101,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="acc-kH-UNk" secondAttribute="trailing" constant="15" id="415-bl-BS0"/>
                     <constraint firstItem="acc-kH-UNk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="EgG-VJ-6AD"/>

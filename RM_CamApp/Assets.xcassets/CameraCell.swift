@@ -1,10 +1,3 @@
-//
-//  CameraCell.swift
-//  RM_CamApp
-//
-//  Created by admin on 19.07.2023.
-//
-
 import UIKit
 
 class CameraCell: UITableViewCell {
@@ -37,16 +30,20 @@ class CameraCell: UITableViewCell {
 	}
 	
 	func configuration(by camera: CameraData) {
-		NetworkManager.shared.uploadImage(by: camera.snapshot, { image in
-			DispatchQueue.main.async { [weak self] in
-				if let image {
-					self?.playerBlock.image = image
-				}
-			}
-		})
-		
+//		NetworkManager.shared.uploadImage(by: camera.snapshot, { image in
+//			DispatchQueue.main.async { [weak self] in
+//				if let image {
+//					self?.playerBlock.image = image
+//				}
+//			}
+//		})
+        playerBlock.image = DataManager.shared.loadImageFromRealm(imageUrl: camera.snapshot)
 		recStatusLogo.isHidden = !camera.rec
 		favoriteStatusLogo.isHidden = !camera.favorites
 		cameraName.text = camera.name
 	}
+    
+//    func configImage(_ link: String) {
+//        playerBlock.image = DataManager.shared.loadImageFromRealm(imageUrl: link)
+//    }
 }

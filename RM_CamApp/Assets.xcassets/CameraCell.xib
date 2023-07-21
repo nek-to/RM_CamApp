@@ -79,6 +79,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="Vqy-59-yU4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="lT4-wm-GGO"/>
                     <constraint firstItem="Vqy-59-yU4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="onv-KV-w4a"/>
