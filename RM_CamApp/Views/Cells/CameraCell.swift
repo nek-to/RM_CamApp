@@ -1,11 +1,11 @@
 import UIKit
 
-class CameraCell: UITableViewCell {
-	@IBOutlet weak var playerBlock: UIImageView!
-	@IBOutlet weak var recStatusLogo: UIImageView!
-	@IBOutlet weak var favoriteStatusLogo: UIImageView!
-	@IBOutlet weak var cameraName: UILabel!
-	@IBOutlet weak var backView: UIView!
+final class CameraCell: UITableViewCell {
+	@IBOutlet private weak var playerBlock: UIImageView!
+	@IBOutlet private weak var recStatusLogo: UIImageView!
+	@IBOutlet private weak var favoriteStatusLogo: UIImageView!
+	@IBOutlet private weak var cameraName: UILabel!
+	@IBOutlet private weak var backView: UIView!
 	
 	static let identifier = "CameraCell"
 	
@@ -30,20 +30,9 @@ class CameraCell: UITableViewCell {
 	}
 	
 	func configuration(by camera: CameraData) {
-//		NetworkManager.shared.uploadImage(by: camera.snapshot, { image in
-//			DispatchQueue.main.async { [weak self] in
-//				if let image {
-//					self?.playerBlock.image = image
-//				}
-//			}
-//		})
         playerBlock.image = DataManager.shared.loadImageFromRealm(imageUrl: camera.snapshot)
 		recStatusLogo.isHidden = !camera.rec
 		favoriteStatusLogo.isHidden = !camera.favorites
 		cameraName.text = camera.name
 	}
-    
-//    func configImage(_ link: String) {
-//        playerBlock.image = DataManager.shared.loadImageFromRealm(imageUrl: link)
-//    }
 }

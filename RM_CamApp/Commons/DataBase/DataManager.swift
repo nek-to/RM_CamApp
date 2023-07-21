@@ -1,12 +1,5 @@
 import RealmSwift
 
-//protocol DataManagerProtocol {
-//	func writeDataIntoDB(_ source: DataSource, _ data: DataType, completion: @escaping (() -> Void))
-//	func readDataFromDB<T: Object>(_ source: DataSource, _ type: T.Type) -> Results<T>?
-//	func deleteDataFromDB(_ source: DataSource, _ data: DataType)
-//	func clearAllDB()
-//}
-
 enum DataSource {
     case network
 }
@@ -38,9 +31,7 @@ class DataManager {
                         cameraData.data?.cameras.forEach({ camera in
                             self.saveImagesToRealm(camera.snapshot)
                         })
-                        completion() // Call the completion handler after writing data
-                        print("Written C")
-                        print(cameraData)
+                        completion()
                     }
                 }
             case .door:
@@ -54,9 +45,7 @@ class DataManager {
                         doorsData.data.forEach { door in
                             self.saveImagesToRealm(door.snapshot ?? "")
                         }
-                        completion() // Call the completion handler after writing data
-                        print("Written D")
-                        print(doorsData)
+                        completion()
                     }
                 }
             }
@@ -77,11 +66,10 @@ class DataManager {
     }
     
     func readDataFromDB<T: Object>(_ source: DataSource, _ type: T.Type) -> Results<T>? {
+		let realm = try? Realm()
         switch source {
         case .network:
-            let realm = try? Realm()
             let results = realm?.objects(type)
-            print("Reeden")
             return results
         }
     }
@@ -103,25 +91,51 @@ class DataManager {
         case .network:
             switch data {
             case .camera:
-                if let cameras = realm?.objects(CamerasModel.self) {
+                if let camerasModel = realm?.objects(CamerasModel.self),
+				let camerasModelData = realm?.objects(CamerasModelData.self),
+				let cameraData = realm?.objects(CameraData.self){
                     try? realm?.write({
-                        realm?.delete(cameras)
+						realm?.delete(camerasModel)
+						realm?.delete(camerasModelData)
+						realm?.delete(cameraData)
                     })
                 }
             case .door:
-                if let doors = realm?.objects(DoorsModel.self) {
+                if let doorsModel = realm?.objects(DoorsModel.self),
+				   let doorData = realm?.objects(DoorData.self) {
                     try? realm?.write({
-                        realm?.delete(doors)
+                        realm?.delete(doorsModel)
+						realm?.delete(doorData)
                     })
                 }
             }
         }
+		deletingImages()
     }
+	
+	func deletingImages() {
+		let realm = try? Realm()
+		if let images = realm?.objects(ImageModel.self) {
+			try? realm?.write {
+				realm?.delete(images)
+			}
+		}
+	}
     
-    func clearAllDB() {
+    func clearAllDB(completion: @escaping () -> Void) {
         deleteDataFromDB(.network, .camera)
         deleteDataFromDB(.network, .door)
+		deletingImages()
+		completion()
     }
+	
+	func clear(completion: @escaping() -> Void) {
+		let realm = try? Realm()
+		try? realm?.write {
+			realm?.deleteAll()
+		}
+		completion()
+	}
     
     private func writeToRealm(object: Object) {
         let realm = try? Realm()

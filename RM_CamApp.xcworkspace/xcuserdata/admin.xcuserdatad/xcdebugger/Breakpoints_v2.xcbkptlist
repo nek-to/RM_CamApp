@@ -3,4 +3,69 @@
    uuid = "F8F1D2D8-DF8F-452F-A8DB-4973F3686235"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "34007227-D4AD-431E-9953-457E47322381"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RM_CamApp/Controllers/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "refreshData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "34007227-D4AD-431E-9953-457E47322381 - 18713977e2dbe7bd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 () -&gt; () in closure #1 () -&gt; () in closure #3 @Swift.MainActor () -&gt; () in RM_CamApp.ViewController.refreshData() -&gt; ()"
+                  moduleName = "RM_CamApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/RM_CamApp/RM_CamApp/Controllers/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "151"
+                  endingLineNumber = "151"
+                  offsetFromSymbolStart = "2965">
+               </Location>
+               <Location
+                  uuid = "34007227-D4AD-431E-9953-457E47322381 - 18713977e2dbe7bd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 () -&gt; () in closure #1 () -&gt; () in closure #3 @Swift.MainActor () -&gt; () in RM_CamApp.ViewController.refreshData() -&gt; ()"
+                  moduleName = "RM_CamApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/RM_CamApp/RM_CamApp/Controllers/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "151"
+                  endingLineNumber = "151"
+                  offsetFromSymbolStart = "2963">
+               </Location>
+               <Location
+                  uuid = "34007227-D4AD-431E-9953-457E47322381 - 18713977e2dbe77b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 () -&gt; () in closure #1 () -&gt; () in closure #3 @Swift.MainActor () -&gt; () in RM_CamApp.ViewController.refreshData() -&gt; ()"
+                  moduleName = "RM_CamApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/RM_CamApp/RM_CamApp/Controllers/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "149"
+                  endingLineNumber = "149"
+                  offsetFromSymbolStart = "3270">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
