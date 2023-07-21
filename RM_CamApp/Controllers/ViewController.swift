@@ -17,20 +17,49 @@ final class ViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
 		setupRefreshControl()
-		
 		setupTableView()
 		
 		let dispatchGroup = DispatchGroup()
 		
-		loadData(dispatchGroup: dispatchGroup)
+		doorsData = DataManager.shared.readDataFromDB(.network, DoorsModel.self)?.first
+		camerasData = DataManager.shared.readDataFromDB(.network, CamerasModel.self)?.first
+		
+		if doorsData == nil && camerasData == nil {
+			
+			dispatchGroup.enter()
+			DataManager.shared.writeDataIntoDB(.network, .camera) {
+				dispatchGroup.leave()
+			}
+			
+			dispatchGroup.enter()
+			DataManager.shared.writeDataIntoDB(.network, .door) {
+				dispatchGroup.leave()
+			}
+		}
 		
 		dispatchGroup.notify(queue: .main) { [weak self] in
 			guard let self = self else { return }
 			
-			self.loadSortedData()
-			self.reloadData()
+			self.doorsData = DataManager.shared.readDataFromDB(.network, DoorsModel.self)?.first
+			self.camerasData = DataManager.shared.readDataFromDB(.network, CamerasModel.self)?.first
+			
+			let sortedData = self.camerasData?.data?.cameras.sorted { $0.room ?? "" < $1.room ?? "" } ?? []
+			if sortedData.isEmpty {
+				
+			} else {
+				for data in sortedData {
+					let room = data.room ?? "NO ROOM"
+					if self.sections[room] == nil {
+						self.sections[room] = [data]
+					} else {
+						self.sections[room]?.append(data)
+					}
+				}
+			}
+			
+			self.sectionsIn = self.sections.keys.compactMap { $0 }
+			self.contentTableView.reloadData()
 		}
 	}
 	
@@ -50,49 +79,6 @@ final class ViewController: UIViewController {
 		contentTableView.separatorStyle = .none
 	}
 	
-	
-	private func loadData(dispatchGroup: DispatchGroup) {
-		doorsData = DataManager.shared.readDataFromDB(.network, DoorsModel.self)?.first
-		camerasData = DataManager.shared.readDataFromDB(.network, CamerasModel.self)?.first
-		
-		if camerasData == nil {
-			dispatchGroup.enter()
-			DataManager.shared.writeDataIntoDB(.network, .camera) {
-				dispatchGroup.leave()
-			}
-		} else if doorsData == nil {
-			
-			dispatchGroup.enter()
-			DataManager.shared.writeDataIntoDB(.network, .door) {
-				dispatchGroup.leave()
-			}
-		}
-	}
-	
-	
-	private func loadSortedData() {
-		let sortedData = camerasData?.data?.cameras.sorted { $0.room ?? "" < $1.room ?? "" } ?? []
-		
-		if sortedData.isEmpty {
-		} else {
-			for data in sortedData {
-				let room = data.room ?? "NO ROOM"
-				if sections[room] == nil {
-					sections[room] = [data]
-				} else {
-					if !(sections[room]?.contains(data) ?? true) {
-						sections[room]?.append(data)
-					}
-				}
-			}
-		}
-	}
-	
-	
-	private func reloadData() {
-		sectionsIn = sections.keys.compactMap { $0 }
-		contentTableView.reloadData()
-	}
 	
 	@IBAction  private func switchToCameras(_ sender: Any) {
 		camerasBottomConstraint.constant = 2.0
@@ -128,7 +114,7 @@ final class ViewController: UIViewController {
 		
 		DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: alertWorkItem)
 		
-		DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 			DataManager.shared.writeDataIntoDB(.network, .camera) { [weak self] in
 				guard let self = self else { return }
 				DataManager.shared.writeDataIntoDB(.network, .door) { [weak self] in
@@ -301,4 +287,3 @@ extension ViewController: UITableViewDataSource {
 		}
 	}
 }
-
